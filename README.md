@@ -1,5 +1,7 @@
 # カプログ / Caplog
 
+[English](README.en.md) | 日本語
+
 デートやお出かけを「見つける・作る・記録する」ためのモバイル中心のプロダクト。
 
 現在のメインクライアントは Expo / React Native で開発している Mobile アプリです。
