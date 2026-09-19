@@ -4,7 +4,8 @@
 
 現在のメインクライアントは Expo / React Native で開発している Mobile アプリです。
 
-Web 版: https://caplog.jp
+- **Mobile:** Expo / React Native — Android 実機で開発・確認中
+- **Web:** https://caplog.jp — 継続運用中
 
 <p align="center">
   <img src="screenshots/mobile-home.webp" width="23%" alt="Home" />
@@ -28,6 +29,20 @@ Web 版: https://caplog.jp
 4. **つなげる** — その記録を次のプランの素材にする
 
 「行った」で終わらせず、記録がそのまま次の計画の入力になる点が中心にあります。
+
+## Engineering highlights
+
+- **写真からプラン候補を作るとき、写真本体をアップロードしない**  
+  端末内の写真から日時・位置情報だけを使って訪問スポット候補を起こし、候補生成のために写真そのものを外部へ送らない構成にしています。
+
+- **Places / Routes を Mobile から直接呼ばない**  
+  場所検索やルート取得は Cloudflare Workers の App API を経由し、外部 API の資格情報をクライアントに置かず、認証・キャッシュ・レート制限もこの層で扱います。
+
+- **Mobile / Web で同じデータを共有する**  
+  Supabase Auth / Database / Storage を共通基盤にし、Mobile と Web で別々のデータを持たず、同じプラン・スポット・投稿を扱います。
+
+- **ネイティブ挙動は実機で確認する**  
+  Expo dev client と Android 実機（Pixel 9）を使い、地図・位置情報・写真など端末依存の挙動を実機で確認しながら開発しています。
 
 ## Mobile features
 
