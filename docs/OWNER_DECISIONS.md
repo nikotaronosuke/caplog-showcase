@@ -1,5 +1,7 @@
 # Owner Decision Log
 
+日本語 | [English](OWNER_DECISIONS.en.md)
+
 Caplog は、Web と Mobile の両方を持つお出かけプロダクトですが、
 開発では「何を共通化し、何を分けるか」を何度も決め直してきました。
 
