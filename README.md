@@ -30,19 +30,43 @@
 
 「行った」で終わらせず、記録がそのまま次の計画の入力になる点が中心にあります。
 
-## Engineering highlights
+## Technical highlights
 
-- **写真からプラン候補を作るとき、写真本体をアップロードしない**  
-  端末内の写真から日時・位置情報だけを使って訪問スポット候補を起こし、候補生成のために写真そのものを外部へ送らない構成にしています。
+### 🗺️ Interactive route map
 
-- **Places / Routes を Mobile から直接呼ばない**  
-  場所検索やルート取得は Cloudflare Workers の App API を経由し、外部 API の資格情報をクライアントに置かず、認証・キャッシュ・レート制限もこの層で扱います。
+プラン順と一致する番号付きマーカー、スポットカルーセルと地図の同期、近接スポット間の距離から計算する動的ズーム、保存済み encoded polyline のローカル decode までを組み合わせています。
 
-- **Mobile / Web で同じデータを共有する**  
-  Supabase Auth / Database / Storage を共通基盤にし、Mobile と Web で別々のデータを持たず、同じプラン・スポット・投稿を扱います。
+経路情報が無い区間を見た目だけの直線で補完せず、電車・バスなど未対応区間は線なしにする方針です。Google 写真は attribution とセットで扱い、座標や Place ID を診断ログへ残さない境界も設けています。
 
-- **ネイティブ挙動は実機で確認する**  
-  Expo dev client と Android 実機（Pixel 9）を使い、地図・位置情報・写真など端末依存の挙動を実機で確認しながら開発しています。
+→ [Map system の詳細](docs/map-system.md)
+
+### 🔗 Public URL architecture
+
+DB 内部の UUID と公開用 `public_id` を分離し、公開 URL は `/posts/{prefecture}/{city}/{public_id}` に統一しています。
+
+Web / Mobile の navigation、共有 URL、投稿作成 API、canonical、OGP、sitemap を同じ URL 生成ルールへ寄せ、旧 UUID URL は正規 URL へ 308 redirect。必要情報が欠けた場合は UUID URL へ fallback して壊れないようにしています。
+
+→ [Public URL design の詳細](docs/public-url-design.md)
+
+### ☁️ Mobile App API boundary
+
+Mobile から Google Places / Routes を直接呼ばず、Cloudflare Workers の App API を境界にしています。
+
+Supabase Bearer 認証、ユーザー単位 rate limit、課金 endpoint の fail-closed、Field Mask、sanitized error、counts-only logging を組み合わせ、外部 API の credential や raw response を Mobile 側へ持ち込まない構成です。App API は Web 本体とは別 deployment に分けています。
+
+→ [App API の詳細](docs/app-api.md)
+
+### 🔒 Privacy-aware photo flow
+
+写真からプラン候補を作るときは、候補生成のために写真本体をアップロードせず、端末内の日時・位置情報を使います。
+
+### 🔁 Shared data, separate clients
+
+Mobile / Web は Supabase Auth / Database / Storage を共通基盤として使い、別々のデータコピーを持ちません。クライアントは分けつつ、同じプラン・スポット・投稿を扱います。
+
+### 📱 Real-device verification
+
+Expo dev client と Android 実機（Pixel 9）を使い、地図・位置情報・写真など端末依存の挙動を実機で確認しながら開発しています。
 
 ## Mobile features
 
