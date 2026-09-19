@@ -102,3 +102,9 @@ Google Maps Platform を利用します。
 - **データベース側でアクセス制御する** — クライアントの実装ではなく、行レベルのポリシーで可視範囲を決める
 - **外部 API のコストを抑える** — キャッシュとレート制限を挟み、呼び出し回数を管理する
 - **Mobile と Web で同じデータを見る** — クライアントごとにデータを分けない
+
+## Technical deep dives
+
+- [Map system](map-system.md) — 番号付きマーカー、カルーセル同期、動的ズーム、route polyline
+- [Public URL design](public-url-design.md) — internal UUID / public ID 分離、canonical、308 redirect
+- [App API](app-api.md) — Mobile API gateway、Bearer auth、rate limit、Field Mask、sanitized logging
