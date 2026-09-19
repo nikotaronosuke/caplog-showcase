@@ -52,7 +52,7 @@ Web / Mobile の navigation、共有 URL、投稿作成 API、canonical、OGP、
 
 Mobile から Google Places / Routes を直接呼ばず、Cloudflare Workers の App API を境界にしています。
 
-Supabase Bearer 認証、ユーザー単位 rate limit、課金 endpoint の fail-closed、Field Mask、sanitized error、counts-only logging を組み合わせ、外部 API の credential や raw response を Mobile 側へ持ち込まない構成です。App API は Web 本体とは別 deployment に分けています。
+Supabase Bearer 認証、ユーザー単位 rate limit、課金 endpoint の fail-closed、Field Mask、sanitized error、counts-only logging を組み合わせ、Places / Routes の server-side credential や raw response を Mobile 側へ持ち込まない構成です。App API は Web 本体とは別 deployment に分けています。
 
 → [App API の詳細](docs/app-api.md)
 
