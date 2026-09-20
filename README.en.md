@@ -34,9 +34,6 @@ The intended loop is:
 The core idea is that an outing record should not be a dead end.
 It should become input for what to do next.
 
-> **Why is it designed this way?** Read the [Owner Decision Log](docs/OWNER_DECISIONS.en.md).  
-> It covers the shift to mobile-first development, public URL migration, route-map truthfulness, App API separation, fail-closed cost controls, logging boundaries, and real-device verification.
-
 ## Technical highlights
 
 ### 🗺️ Interactive route map
@@ -321,8 +318,6 @@ Current implemented areas include:
 
 ## Documentation
 
-- [Owner Decision Log](docs/OWNER_DECISIONS.en.md)
-- [Original Japanese Owner Decision Log](docs/OWNER_DECISIONS.md)
 - [Architecture](docs/architecture.md)
 - [Map system](docs/map-system.md)
 - [Public URL design](docs/public-url-design.md)
