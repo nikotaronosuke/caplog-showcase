@@ -32,9 +32,6 @@
 
 「行った」で終わらせず、記録がそのまま次の計画の入力になる点が中心にあります。
 
-> **なぜこの設計にしたか:** [Owner Decision Log](docs/OWNER_DECISIONS.md)  
-> Mobile-firstへ移した理由、URL移行、地図で嘘の直線を描かない判断、App API分離、fail-closed、privacy境界などをまとめています。
-
 ## Technical highlights
 
 ### 🗺️ Interactive route map
