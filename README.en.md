@@ -329,7 +329,6 @@ The deeper technical documents are currently written mainly in Japanese; the Eng
 
 Generative AI is used as a development, research, and review partner.
 
-Product direction, specification, UX, acceptance decisions, and real-device verification are owned by the project owner.
 
 ---
 
